@@ -3,10 +3,14 @@ import { Button } from "./button";
 import styles from "./form.module.css";
 
 type IFormProps = {
-  "on-submit": (payload: { title: string; description: string; price: string }) => void;
-}
+  "on-submit": (payload: {
+    title: string;
+    description: string;
+    price: string;
+  }) => void;
+};
 
-export const Form: React.FC<IFormProps> = (props) => {
+export const Form: React.FC<IFormProps> = props => {
   let formRef = React.useRef<HTMLFormElement>(null);
   let titleRef = React.useRef<HTMLInputElement>(null);
   let priceRef = React.useRef<HTMLInputElement>(null);
@@ -37,7 +41,11 @@ export const Form: React.FC<IFormProps> = (props) => {
   };
 
   return (
-    <form className={styles.form} onSubmit={(event) => handleSubmit(event)} ref={formRef}>
+    <form
+      className={styles.form}
+      onSubmit={event => handleSubmit(event)}
+      ref={formRef}
+    >
       <span className={styles.label}>Product title: *</span>
 
       <input
