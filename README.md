@@ -1,5 +1,9 @@
 # Developer at Droppe - React refactoring task
 
+## Updates:
+
+- 🧩 **Fixed Code Formatting** by setting up a pre-commit hook with husky, prettier and lint-staged. See `fix-code-format` branch for changes.
+
 ## Available Scripts
 
 In the project directory, you can run:
