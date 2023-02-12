@@ -42,7 +42,7 @@ export class ShopApp extends React.Component<{}, State> {
     this.fetchProducts();
   }
 
-  favClick = (title: string) => {
+  onFavoriteToggle = (title: string) => {
     const prods = this.state.products;
     const idx = lodash.findIndex(prods, { title: title });
     let currentFavs = this.state.numFavorites;
@@ -166,7 +166,7 @@ export class ShopApp extends React.Component<{}, State> {
           </div>
 
           {products && !!products.length ? (
-            <ProductList products={products} onFav={this.favClick} />
+            <ProductList products={products} onFav={this.onFavoriteToggle} />
           ) : (
             <div></div>
           )}
