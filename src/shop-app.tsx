@@ -20,20 +20,21 @@ type State = {
 };
 
 export class ShopApp extends React.Component<{}, State> {
+  // Refactored state
+  state: State = {
+    products: [],
+    isOpen: false,
+    isShowingMessage: false,
+    message: "",
+    numFavorites: 0,
+    prodCount: 0,
+  };
+
   constructor(props: any) {
     super(props);
 
     this.favClick = this.favClick.bind(this);
     this.onSubmit = this.onSubmit.bind(this);
-
-    this.state = {
-      products: [],
-      isOpen: false,
-      isShowingMessage: false,
-      message: "",
-      numFavorites: 0,
-      prodCount: 0,
-    };
 
     fetch("https://fakestoreapi.com/products").then(response => {
       let jsonResponse = response.json();
