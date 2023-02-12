@@ -10,8 +10,15 @@ import img1 from "./images/img1.png";
 import img2 from "./images/img2.png";
 import styles from "./shopApp.module.css";
 
+type Product = {
+  title: string;
+  description: string;
+  price: string;
+  isFavorite?: boolean;
+};
+
 type State = {
-  products: any[]; //note: can be made into Product Type later;
+  products: Product[];
   isOpen: boolean;
   isShowingMessage: boolean;
   message: string;
