@@ -42,12 +42,11 @@ export class ShopApp extends React.Component<{}, State> {
 
     this.favClick = this.favClick.bind(this);
     this.onSubmit = this.onSubmit.bind(this);
-
-    this.fetchProducts();
   }
 
   componentDidMount() {
     document.title = "Droppe refactor app";
+    this.fetchProducts();
   }
 
   favClick(title: string) {
