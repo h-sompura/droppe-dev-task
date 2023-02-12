@@ -42,21 +42,17 @@ export class ShopApp extends React.Component<{}, State> {
     this.fetchProducts();
   }
 
-  favClick = (title: string) => {
-    const prods = this.state.products;
-    const idx = lodash.findIndex(prods, { title: title });
-    let currentFavs = this.state.numFavorites;
-    let totalFavs: any;
+  onFavoriteToggle = (title: string) => {
+    const products = this.state.products;
+    const productIndex = products.findIndex(product => product.title === title);
+    const currentFavorites = this.state.numFavorites;
 
-    if (prods[idx].isFavorite) {
-      prods[idx].isFavorite = false;
-      totalFavs = --currentFavs;
-    } else {
-      totalFavs = ++currentFavs;
-      prods[idx].isFavorite = true;
-    }
+    products[productIndex].isFavorite = !products[productIndex].isFavorite;
+    const updatedFavorites = products[productIndex].isFavorite
+      ? currentFavorites + 1
+      : currentFavorites - 1;
 
-    this.setState(() => ({ products: prods, numFavorites: totalFavs }));
+    this.setState({ products, numFavorites: updatedFavorites });
   };
 
   onSubmit = (payload: {
@@ -165,11 +161,9 @@ export class ShopApp extends React.Component<{}, State> {
             <span>Number of favorites: {this.state.numFavorites}</span>
           </div>
 
-          {products && !!products.length ? (
-            <ProductList products={products} onFav={this.favClick} />
-          ) : (
-            <div></div>
-          )}
+          {products && products.length ? (
+            <ProductList products={products} onFav={this.onFavoriteToggle} />
+          ) : null}
         </div>
 
         <>
