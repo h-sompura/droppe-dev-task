@@ -43,24 +43,7 @@ export class ShopApp extends React.Component<{}, State> {
     this.favClick = this.favClick.bind(this);
     this.onSubmit = this.onSubmit.bind(this);
 
-    fetch("https://fakestoreapi.com/products").then(response => {
-      let jsonResponse = response.json();
-
-      jsonResponse.then(rawData => {
-        let data = [];
-
-        for (let i = 0; i < rawData.length; i++) {
-          let updatedProd = rawData[i];
-          data.push(updatedProd);
-        }
-        this.setState({
-          products: data,
-        });
-        this.setState({
-          prodCount: data.length,
-        });
-      });
-    });
+    this.fetchProducts();
   }
 
   componentDidMount() {
@@ -127,6 +110,17 @@ export class ShopApp extends React.Component<{}, State> {
         })(this);
       });
   }
+
+  // Helper/Methods
+  fetchProducts = async () => {
+    const response = await fetch("https://fakestoreapi.com/products");
+    const rawData = await response.json();
+    const data: Product[] = rawData.map((product: Product) => ({
+      ...product,
+      isFavorite: false,
+    }));
+    this.setState({ products: data, prodCount: data.length });
+  };
 
   render() {
     const { products, isOpen } = this.state;
