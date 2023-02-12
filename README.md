@@ -8,6 +8,8 @@
 
 - 📌 **Simplified the onClick functions** into arrow functions in `shop-app.tsx`. See `fix-on-click` branch for changes.
 
+- ⭐️ **Fix fav click method** by renaming the method, variables into meaningful names. Replaced `lodash.findIndex` with `Array.prototype.findIndex`. See `fix-fav-click` branch for changes.
+
 ## Available Scripts
 
 In the project directory, you can run:
