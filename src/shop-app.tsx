@@ -37,19 +37,12 @@ export class ShopApp extends React.Component<{}, State> {
     prodCount: 0,
   };
 
-  constructor(props: any) {
-    super(props);
-
-    this.favClick = this.favClick.bind(this);
-    this.onSubmit = this.onSubmit.bind(this);
-  }
-
   componentDidMount() {
     document.title = "Droppe refactor app";
     this.fetchProducts();
   }
 
-  favClick(title: string) {
+  favClick = (title: string) => {
     const prods = this.state.products;
     const idx = lodash.findIndex(prods, { title: title });
     let currentFavs = this.state.numFavorites;
@@ -64,9 +57,13 @@ export class ShopApp extends React.Component<{}, State> {
     }
 
     this.setState(() => ({ products: prods, numFavorites: totalFavs }));
-  }
+  };
 
-  onSubmit(payload: { title: string; description: string; price: string }) {
+  onSubmit = (payload: {
+    title: string;
+    description: string;
+    price: string;
+  }) => {
     const updated = lodash.clone(this.state.products);
     updated.push({
       title: payload.title,
@@ -108,7 +105,7 @@ export class ShopApp extends React.Component<{}, State> {
           }, 2000);
         })(this);
       });
-  }
+  };
 
   // Helper/Methods
   fetchProducts = async () => {
