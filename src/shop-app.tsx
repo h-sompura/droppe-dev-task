@@ -148,13 +148,7 @@ export class ShopApp extends React.Component<{}, State> {
         >
           <div className={styles.buttonWrapper}>
             <span role="button">
-              <Button
-                onClick={function (this: any) {
-                  this.setState({
-                    isOpen: true,
-                  });
-                }.bind(this)}
-              >
+              <Button onClick={() => this.setState({ isOpen: true })}>
                 Send product proposal
               </Button>
             </span>
@@ -187,11 +181,7 @@ export class ShopApp extends React.Component<{}, State> {
             <div className={styles.modalContentHelper}>
               <div
                 className={styles.modalClose}
-                onClick={function (this: any) {
-                  this.setState({
-                    isOpen: false,
-                  });
-                }.bind(this)}
+                onClick={() => this.setState({ isOpen: false })}
               >
                 <FaTimes />
               </div>
