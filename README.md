@@ -6,6 +6,8 @@
 
 - 🧹 **Removed ShopApp constructor** by refactoring the state, fetch extracted into seperate function and updated favClick, onSubmit methods. See `fix-shop-constructor` branch for changes.
 
+- 📌 **Simplified the onClick functions** into arrow functions in `shop-app.tsx`. See `fix-on-click` branch for changes.
+
 ## Available Scripts
 
 In the project directory, you can run:
