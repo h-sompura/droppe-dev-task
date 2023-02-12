@@ -161,11 +161,9 @@ export class ShopApp extends React.Component<{}, State> {
             <span>Number of favorites: {this.state.numFavorites}</span>
           </div>
 
-          {products && !!products.length ? (
+          {products && products.length ? (
             <ProductList products={products} onFav={this.onFavoriteToggle} />
-          ) : (
-            <div></div>
-          )}
+          ) : null}
         </div>
 
         <>
