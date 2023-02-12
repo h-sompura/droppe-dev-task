@@ -181,11 +181,7 @@ export class ShopApp extends React.Component<{}, State> {
             <div className={styles.modalContentHelper}>
               <div
                 className={styles.modalClose}
-                onClick={function (this: any) {
-                  this.setState({
-                    isOpen: false,
-                  });
-                }.bind(this)}
+                onClick={() => this.setState({ isOpen: false })}
               >
                 <FaTimes />
               </div>
