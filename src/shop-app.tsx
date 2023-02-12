@@ -10,57 +10,39 @@ import img1 from "./images/img1.png";
 import img2 from "./images/img2.png";
 import styles from "./shopApp.module.css";
 
-export class ShopApp extends React.Component<
-  {},
-  {
-    products: any[];
-    isOpen: boolean;
-    isShowingMessage: boolean;
-    message: string;
-    numFavorites: number;
-    prodCount: number;
-  }
-> {
-  constructor(props: any) {
-    super(props);
+type Product = {
+  title: string;
+  description: string;
+  price: string;
+  isFavorite?: boolean;
+};
 
-    this.favClick = this.favClick.bind(this);
-    this.onSubmit = this.onSubmit.bind(this);
+type State = {
+  products: Product[];
+  isOpen: boolean;
+  isShowingMessage: boolean;
+  message: string;
+  numFavorites: number;
+  prodCount: number;
+};
 
-    this.state = {
-      products: [],
-      isOpen: false,
-      isShowingMessage: false,
-      message: "",
-      numFavorites: 0,
-      prodCount: 0,
-    };
-
-    fetch("https://fakestoreapi.com/products").then(response => {
-      let jsonResponse = response.json();
-
-      jsonResponse.then(rawData => {
-        let data = [];
-
-        for (let i = 0; i < rawData.length; i++) {
-          let updatedProd = rawData[i];
-          data.push(updatedProd);
-        }
-        this.setState({
-          products: data,
-        });
-        this.setState({
-          prodCount: data.length,
-        });
-      });
-    });
-  }
+export class ShopApp extends React.Component<{}, State> {
+  // Refactored state
+  state: State = {
+    products: [],
+    isOpen: false,
+    isShowingMessage: false,
+    message: "",
+    numFavorites: 0,
+    prodCount: 0,
+  };
 
   componentDidMount() {
     document.title = "Droppe refactor app";
+    this.fetchProducts();
   }
 
-  favClick(title: string) {
+  favClick = (title: string) => {
     const prods = this.state.products;
     const idx = lodash.findIndex(prods, { title: title });
     let currentFavs = this.state.numFavorites;
@@ -75,9 +57,13 @@ export class ShopApp extends React.Component<
     }
 
     this.setState(() => ({ products: prods, numFavorites: totalFavs }));
-  }
+  };
 
-  onSubmit(payload: { title: string; description: string; price: string }) {
+  onSubmit = (payload: {
+    title: string;
+    description: string;
+    price: string;
+  }) => {
     const updated = lodash.clone(this.state.products);
     updated.push({
       title: payload.title,
@@ -119,7 +105,18 @@ export class ShopApp extends React.Component<
           }, 2000);
         })(this);
       });
-  }
+  };
+
+  // Helper/Methods
+  fetchProducts = async () => {
+    const response = await fetch("https://fakestoreapi.com/products");
+    const rawData = await response.json();
+    const data: Product[] = rawData.map((product: Product) => ({
+      ...product,
+      isFavorite: false,
+    }));
+    this.setState({ products: data, prodCount: data.length });
+  };
 
   render() {
     const { products, isOpen } = this.state;
