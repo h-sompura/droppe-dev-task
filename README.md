@@ -18,6 +18,8 @@
 
 - 🌁 **Extracted images container into a seperate component** to clean up the `shop-app.tsx`. See `add-image-container` branch for changes.
 
+- 📑 **Fixed modal component** in `shop-app.tsx` by removing unnecessary divs and code. See `fix-modal` branch for changes.
+
 ## Available Scripts
 
 In the project directory, you can run:
