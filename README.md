@@ -14,6 +14,8 @@
 
 - 💼 **Created a Product Model** by creating an interface and replacing it in the `shop-app.tsx`. See `add-product-model` branch for changes. 
 
+- 🗂️ **Extracted header into a separate file** to clean up the `shop-app.tsx`. See `add-header` branch for changes. 
+
 ## Available Scripts
 
 In the project directory, you can run:
