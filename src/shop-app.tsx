@@ -55,52 +55,26 @@ export class ShopApp extends React.Component<{}, State> {
     this.setState({ products, numFavorites: updatedFavorites });
   };
 
-  onSubmit = (payload: {
-    title: string;
-    description: string;
-    price: string;
-  }) => {
-    const updated = lodash.clone(this.state.products);
-    updated.push({
-      title: payload.title,
-      description: payload.description,
-      price: payload.price,
-    });
+  onAddProduct = (payload: Product) => {
+    const updatedProducts = [
+      ...this.state.products,
+      {
+        title: payload.title,
+        description: payload.description,
+        price: payload.price,
+      },
+    ];
 
     this.setState({
-      products: updated,
-      prodCount: lodash.size(this.state.products) + 1,
-    });
-
-    this.setState({
+      products: updatedProducts,
+      prodCount: updatedProducts.length,
       isOpen: false,
-    });
-
-    this.setState({
       isShowingMessage: true,
       message: "Adding product...",
     });
 
     // **this POST request doesn't actually post anything to any database**
-    fetch("https://fakestoreapi.com/products", {
-      method: "POST",
-      body: JSON.stringify({
-        title: payload.title,
-        price: payload.price,
-        description: payload.description,
-      }),
-    })
-      .then(res => res.json())
-      .then(json => {
-        (function (t) {
-          setTimeout(() => {
-            t.setState({
-              isShowingMessage: false,
-              message: "",
-            });
-          }, 2000);
-        })(this);
-      });
+    this.updateProducts(payload);
   };
 
   // Helper/Methods
@@ -112,6 +86,26 @@ export class ShopApp extends React.Component<{}, State> {
       isFavorite: false,
     }));
     this.setState({ products: data, prodCount: data.length });
+  };
+
+  // post products
+  updateProducts = async (payload: Product) => {
+    try {
+      const response = await fetch("https://fakestoreapi.com/products", {
+        method: "POST",
+        body: JSON.stringify({
+          title: payload.title,
+          price: payload.price,
+          description: payload.description,
+        }),
+      });
+      const json = await response.json();
+      setTimeout(() => {
+        this.setState({ isShowingMessage: false, message: "" });
+      }, 2000);
+    } catch (error) {
+      console.error(error);
+    }
   };
 
   render() {
@@ -180,7 +174,7 @@ export class ShopApp extends React.Component<{}, State> {
                 <FaTimes />
               </div>
 
-              <Form on-submit={this.onSubmit} />
+              <Form on-submit={this.onAddProduct} />
             </div>
           </Modal>
         </>
