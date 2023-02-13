@@ -10,6 +10,8 @@
 
 - ⭐️ **Fix fav click method** by renaming the method, variables into meaningful names. Replaced `lodash.findIndex` with `Array.prototype.findIndex`. See `fix-fav-click` branch for changes.
 
+- 📄 **Fix on submit method** by renaming the method, merging multiple setStates into a single one, replaced `lodash` methods with native js methods and extracted fetch into a seperate function. See `fix-on-submit` branch for changes. 
+
 ## Available Scripts
 
 In the project directory, you can run:
