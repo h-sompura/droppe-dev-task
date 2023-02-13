@@ -1,21 +1,14 @@
 import * as React from "react";
-import lodash from "lodash";
 import Modal from "react-modal";
 import { FaTimes } from "react-icons/fa";
 import { Button } from "./components/button";
 import ProductList from "./components/product-list-components";
 import { Form } from "./components/form";
+import { Product } from "./model/Product";
 import logo from "./images/droppe-logo.png";
 import img1 from "./images/img1.png";
 import img2 from "./images/img2.png";
 import styles from "./shopApp.module.css";
-
-type Product = {
-  title: string;
-  description: string;
-  price: string;
-  isFavorite?: boolean;
-};
 
 type State = {
   products: Product[];
