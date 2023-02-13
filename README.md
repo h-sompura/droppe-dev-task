@@ -16,6 +16,8 @@
 
 - 🗂️ **Extracted header into a separate file** to clean up the `shop-app.tsx`. See `add-header` branch for changes. 
 
+- 🌁 **Extracted images container into a seperate component** to clean up the `shop-app.tsx`. See `add-image-container` branch for changes.
+
 ## Available Scripts
 
 In the project directory, you can run:
