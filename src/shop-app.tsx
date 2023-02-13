@@ -134,24 +134,22 @@ export class ShopApp extends React.Component<{}, State> {
           ) : null}
         </div>
 
-        <>
-          <Modal
-            isOpen={isOpen}
-            className={styles.reactModalContent}
-            overlayClassName={styles.reactModalOverlay}
-          >
-            <div className={styles.modalContentHelper}>
-              <div
-                className={styles.modalClose}
-                onClick={() => this.setState({ isOpen: false })}
-              >
-                <FaTimes />
-              </div>
-
-              <Form on-submit={this.onAddProduct} />
+        <Modal
+          isOpen={isOpen}
+          onRequestClose={() => this.setState({ isOpen: false })}
+          className={styles.reactModalContent}
+          overlayClassName={styles.reactModalOverlay}
+        >
+          <div className={styles.modalContentHelper}>
+            <div
+              className={styles.modalClose}
+              onClick={() => this.setState({ isOpen: false })}
+            >
+              <FaTimes />
             </div>
-          </Modal>
-        </>
+            <Form on-submit={this.onAddProduct} />
+          </div>
+        </Modal>
       </React.Fragment>
     );
   }
