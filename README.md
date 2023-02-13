@@ -12,6 +12,8 @@
 
 - 📄 **Fix on submit method** by renaming the method, merging multiple setStates into a single one, replaced `lodash` methods with native js methods and extracted fetch into a seperate function. See `fix-on-submit` branch for changes. 
 
+- 💼 **Created a Product Model** by creating an interface and replacing it in the `shop-app.tsx`. See `add-product-model` branch for changes. 
+
 ## Available Scripts
 
 In the project directory, you can run:
