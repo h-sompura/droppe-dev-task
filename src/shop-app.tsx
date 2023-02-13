@@ -55,28 +55,20 @@ export class ShopApp extends React.Component<{}, State> {
     this.setState({ products, numFavorites: updatedFavorites });
   };
 
-  onAddProduct = (payload: {
-    title: string;
-    description: string;
-    price: string;
-  }) => {
-    const updated = lodash.clone(this.state.products);
-    updated.push({
-      title: payload.title,
-      description: payload.description,
-      price: payload.price,
-    });
+  onAddProduct = (payload: Product) => {
+    const updatedProducts = [
+      ...this.state.products,
+      {
+        title: payload.title,
+        description: payload.description,
+        price: payload.price,
+      },
+    ];
 
     this.setState({
-      products: updated,
-      prodCount: lodash.size(this.state.products) + 1,
-    });
-
-    this.setState({
+      products: updatedProducts,
+      prodCount: updatedProducts.length,
       isOpen: false,
-    });
-
-    this.setState({
       isShowingMessage: true,
       message: "Adding product...",
     });
