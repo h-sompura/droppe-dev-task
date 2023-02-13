@@ -55,7 +55,7 @@ export class ShopApp extends React.Component<{}, State> {
     this.setState({ products, numFavorites: updatedFavorites });
   };
 
-  onSubmit = (payload: {
+  onAddProduct = (payload: {
     title: string;
     description: string;
     price: string;
@@ -182,7 +182,7 @@ export class ShopApp extends React.Component<{}, State> {
                 <FaTimes />
               </div>
 
-              <Form on-submit={this.onSubmit} />
+              <Form on-submit={this.onAddProduct} />
             </div>
           </Modal>
         </>
