@@ -5,9 +5,8 @@ import { Button } from "./components/button";
 import ProductList from "./components/product-list-components";
 import { Form } from "./components/form";
 import { Header } from "./components/Header";
+import { ImageContainer } from "./components/ImageContainer";
 import { Product } from "./model/Product";
-import img1 from "./images/img1.png";
-import img2 from "./images/img2.png";
 import styles from "./shopApp.module.css";
 
 type State = {
@@ -106,20 +105,7 @@ export class ShopApp extends React.Component<{}, State> {
     return (
       <React.Fragment>
         <Header />
-        <>
-          <span
-            className={["container", styles.main].join(" ")}
-            style={{
-              margin: "50px inherit",
-              display: "flex",
-              justifyContent: "space-evenly",
-            }}
-          >
-            <img src={img1} style={{ maxHeight: "15em", display: "block" }} />
-            <img src={img2} style={{ maxHeight: "15rem", display: "block" }} />
-          </span>
-        </>
-
+        <ImageContainer />
         <div
           className={["container", styles.main].join(" ")}
           style={{ paddingTop: 0 }}
